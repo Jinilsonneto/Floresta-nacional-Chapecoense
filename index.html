@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floresta Nacional de Chapecó - Patrimônio Natural de Santa Catarina</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(rgba(46, 125, 50, 0.9), rgba(76, 175, 80, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23228B22" width="1200" height="400"/><circle fill="%23006400" cx="200" cy="100" r="80" opacity="0.3"/><circle fill="%23228B22" cx="400" cy="200" r="60" opacity="0.4"/><circle fill="%2332CD32" cx="600" cy="150" r="70" opacity="0.3"/><circle fill="%23008000" cx="800" cy="250" r="90" opacity="0.2"/><circle fill="%23228B22" cx="1000" cy="120" r="75" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            background: rgba(46, 125, 50, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        main {
+            padding: 60px 0;
+        }
+
+        .section {
+            background: white;
+            margin: 40px 0;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .section:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(odd) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            font-size: 2.5em;
+            color: #2e7d32;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #4caf50, #81c784);
+        }
+
+        .section h3 {
+            font-size: 1.8em;
+            color: #388e3c;
+            margin: 30px 0 15px 0;
+            border-left: 4px solid #4caf50;
+            padding-left: 20px;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+            text-indent: 30px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #4caf50;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .biodiversity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .biodiversity-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            border-top: 5px solid #4caf50;
+            transition: transform 0.3s ease;
+        }
+
+        .biodiversity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .biodiversity-card h4 {
+            color: #2e7d32;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .species-list {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #4caf50, #81c784);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 45%;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #4caf50;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 30px;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -35px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -35px;
+        }
+
+        .timeline-date {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .conservation-tips {
+            background: linear-gradient(135deg, #fff3e0, #ffcc80);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid #ff9800;
+        }
+
+        .conservation-tips h3 {
+            color: #e65100;
+            border-left-color: #ff9800;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .tip-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 3px solid #ff9800;
+        }
+
+        footer {
+            background: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            margin: 20px 0;
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 80px);
+                left: 60px !important;
+            }
+            
+            .timeline-item::before {
+                left: -35px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Floresta Nacional de Chapecó</h1>
+                <p>Preservando a Mata Atlântica no Oeste de Santa Catarina</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#historia">História</a></li>
+                <li><a href="#biodiversidade">Biodiversidade</a></li>
+                <li><a href="#conservacao">Conservação</a></li>
+                <li><a href="#visitacao">Visitação</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section id="sobre" class="section">
+                <h2>Sobre a Floresta Nacional de Chapecó</h2>
+                
+                <p>A Floresta Nacional de Chapecó representa um dos mais importantes remanescentes de Mata Atlântica na região oeste de Santa Catarina. Esta unidade de conservação abrange 1.590,60 hectares, distribuídos em três territórios distintos: a Gleba Guatambu com 1.287,54 hectares onde se localiza a sede da FLONA, uma área menor de 0,43 hectares também em Guatambu, e a Gleba Chapecó com 302,62 hectares no município de Chapecó.</p>
+
+                <p>Como uma Unidade de Conservação de Uso Sustentável, a FLONA de Chapecó desempenha um papel fundamental na preservação da biodiversidade regional, permitindo o manejo sustentável dos recursos naturais. Seu bioma é constituído de floresta com araucária e floresta estacional, características típicas da Mata Atlântica do interior.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">1.591</div>
+                        <div class="stat-label">Hectares Protegidos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Glebas Distribuídas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Municípios Abrangidos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">57</div>
+                        <div class="stat-label">Anos de Preservação</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Importância Ecológica</h3>
+                    <p>A FLONA de Chapecó atua como um corredor ecológico vital, conectando fragmentos florestais e permitindo o fluxo genético entre populações de fauna e flora. Sua localização estratégica no oeste catarinense contribui para a manutenção da biodiversidade em uma região historicamente impactada pela agricultura e pecuária.</p>
+                </div>
+            </section>
+
+            <section id="historia" class="section">
+                <h2>História e Criação</h2>
+                
+                <p>A trajetória da Floresta Nacional de Chapecó reflete a evolução das políticas ambientais brasileiras e o crescimento da consciência sobre a importância da conservação. Inicialmente criada em 1962 com o nome de Parque Florestal João Goulart, a área foi posteriormente redesignada em 1968 como Floresta Nacional de Chapecó.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1962</div>
+                        <h4>Criação do Parque Florestal João Goulart</h4>
+                        <p>Primeira iniciativa de proteção da área, reconhecendo sua importância para a conservação da Mata Atlântica na região oeste de Santa Catarina.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">1968</div>
+                        <h4>Redesignação como Floresta Nacional</h4>
+                        <p>Através da Portaria nº 560/68, em 25 de outubro de 1968, a área foi oficialmente transformada em Floresta Nacional de Chapecó, consolidando seu status de unidade de conservação.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2000</div>
+                        <h4>Integração ao SNUC</h4>
+                        <p>Com a criação do Sistema Nacional de Unidades de Conservação, a FLONA foi classificada como Unidade de Conservação de Uso Sustentável.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">Presente</div>
+                        <h4>Conservação Ativa</h4>
+                        <p>Atualmente, a FLONA mantém programas de pesquisa, educação ambiental e manejo sustentável, contribuindo para a preservação da biodiversidade regional.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Contexto Histórico Regional</h3>
+                    <p>A criação da FLONA de Chapecó ocorreu em um período de intensa transformação da paisagem no oeste catarinense, quando a expansão agropecuária ameaçava os últimos remanescentes florestais da região. Sua preservação representou uma visão pioneira de conservação em uma área onde o desenvolvimento econômico estava rapidamente alterando os ecossistemas naturais.</p>
+                </div>
+            </section>
+
+            <section id="biodiversidade" class="section">
+                <h2>Biodiversidade da Mata Atlântica</h2>
+                
+                <p>A Floresta Nacional de Chapecó protege uma amostra significativa da biodiversidade da Mata Atlântica, um dos biomas mais ricos e ameaçados do planeta. A Mata Atlântica abriga mais de 20 mil espécies de flora e cerca de 2.040 espécies diferentes de fauna, representando o bioma mais biodiverso do Brasil.</p>
+
+                <p>Estima-se que existam na Mata Atlântica mais de 20 mil espécies de árvores e arbustos, sendo 8 mil delas endêmicas à região, além de 68 espécies de palmeiras e 925 de bromélias. Esta riqueza biológica faz da FLONA de Chapecó um repositório genético inestimável.</p>
+
+                <div class="biodiversity-grid">
+                    <div class="biodiversity-card">
+                        <h4>🌳 Flora Característica</h4>
+                        <div class="species-list">
+                            <p><strong>Árvores Emblemáticas:</strong> Araucária (Araucaria angustifolia), Cedro, Canela, Ipê, Jatobá, Jequitibá</p>
+                            <p><strong>Palmeiras:</strong> Diversas espécies nativas adaptadas ao clima subtropical</p>
+                            <p><strong>Bromélias:</strong> Epífitas que enriquecem o dossel florestal</p>
+                            <p><strong>Erva-mate:</strong> Ilex paraguariensis, importante economicamente na região</p>
+                        </div>
+                    </div>
+                    
+                    <div class="biodiversity-card">
+                        <h4>🦋 Fauna Diversa</h4>
+                        <div class="species-list">
+                            <p><strong>Mamíferos:</strong> Cerca de 270 espécies na Mata Atlântica, incluindo felinos, primatas e ungulados</p>
+                            <p><strong>Aves:</strong> Mais de 850 espécies, incluindo tucanos, sabiás e beija-flores</p>
+                            <p><strong>Anfíbios:</strong> Aproximadamente 370 espécies, muitas endêmicas</p>
+                            <p><strong>Répteis:</strong> Cerca de 200 espécies adaptadas aos diferentes habitats</p>
+                        </div>
+                    </div>
+                    
+                    <div class="biodiversity-card">
+                        <h4>🌿 Espécies Endêmicas</h4>
+                        <div class="species-list">
+                            <p>A FLONA abriga diversas espécies que só existem na Mata Atlântica, resultado de milhões de anos de evolução em isolamento.</p>
+                            <p><strong>Plantas:</strong> Muitas espécies de bromélias, orquídeas e árvores são exclusivas do bioma</p>
+                            <p><strong>Animais:</strong> Várias espécies de aves, anfíbios e invertebrados são encontradas apenas nesta região</p>
+                        </div>
+                    </div>
+                    
+                    <div class="biodiversity-card">
+                        <h4>⚠️ Espécies Ameaçadas</h4>
+                        <div class="species-list">
+                            <p>A FLONA serve como refúgio para espécies ameaçadas de extinção devido à perda de habitat.</p>
+                            <p><strong>Conservação:</strong> Programas específicos protegem espécies vulneráveis</p>
+                            <p><strong>Pesquisa:</strong> Estudos contínuos monitoram populações e habitats</p>
+                            <p><strong>Recuperação:</strong> Iniciativas de restauração ampliam áreas de habitat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Exploração Sustentável</h3>
+                    <p>A FLONA desenvolve atividades de exploração sustentável, comercializando anualmente 4.000m³ de erva-mate (Ilex paraguariensis). Este manejo demonstra como a conservação pode ser economicamente viável, gerando renda enquanto preserva os ecossistemas naturais.</p>
+                </div>
+            </section>
+
+            <section id="conservacao" class="section">
+                <h2>Conservação e Manejo</h2>
+                
+                <p>A Floresta Nacional de Chapecó desenvolve um conjunto abrangente de ações de conservação que vão desde a proteção direta dos ecossistemas até programas educativos e de pesquisa científica. Como unidade de conservação de uso sustentável, ela busca equilibrar a preservação ambiental com o aproveitamento racional dos recursos naturais.</p>
+
+                <h3>Programas de Conservação</h3>
+                <p>Um dos destaques é o programa de combate à vespa da madeira, que protege as árvores nativas de pragas invasoras. Este programa exemplifica como a gestão ativa é essencial para manter a saúde dos ecossistemas florestais.</p>
+
+                <div class="conservation-tips">
+                    <h3>Como Contribuir para a Conservação</h3>
+                    <p>Cada pessoa pode fazer a diferença na preservação da Mata Atlântica e da FLONA de Chapecó. Pequenas ações individuais, quando multiplicadas, geram impactos significativos na conservação ambiental.</p>
+                    
+                    <div class="tips-grid">
+                        <div class="tip-item">
+                            <h4>🌱 Educação Ambiental</h4>
+                            <p>Participe de programas educativos e compartilhe conhecimentos sobre a importância da conservação.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>🚮 Turismo Responsável</h4>
+                            <p>Visite a FLONA seguindo as normas ambientais e respeitando a flora e fauna locais.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>🌿 Consumo Consciente</h4>
+                            <p>Prefira produtos certificados e de origem sustentável, apoiando a economia verde.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>📚 Pesquisa e Ciência</h4>
+                            <p>Apoie pesquisas científicas que contribuam para o conhecimento e conservação da biodiversidade.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>🤝 Voluntariado</h4>
+                            <p>Participe de ações voluntárias de restauração e monitoramento ambiental.</p>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <h4>🌍 Consciência Global</h4>
+                            <p>Entenda a importância da Mata Atlântica no contexto das mudanças climáticas globais.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Desafios de Conservação</h3>
+                <p>A conservação da Mata Atlântica enfrenta desafios significativos, incluindo a fragmentação de habitats, pressões do desenvolvimento urbano e agrícola, e os impactos das mudanças climáticas. A FLONA de Chapecó trabalha ativamente para superar esses desafios através de parcerias com instituições de pesquisa, organizações não-governamentais e comunidades locais.</p>
+
+                <p>A gestão integrada da paisagem é fundamental para conectar a FLONA com outras áreas protegidas e propriedades rurais que mantêm fragmentos florestais, criando corredores ecológicos que permitem o movimento da fauna e o fluxo genético entre populações.</p>
+            </section>
+
+            <section id="visitacao" class="section">
+                <h2>Visitação e Educação Ambiental</h2>
+                
+                <p>A Floresta Nacional de Chapecó oferece oportunidades únicas para visitação educativa e científica, permitindo que o público conheça de perto a riqueza da Mata Atlântica. As visitas são uma ferramenta poderosa de educação ambiental, sensibilizando visitantes sobre a importância da conservação.</p>
+
+                <h3>Atividades Disponíveis</h3>
+                <p>A FLONA desenvolve programas educativos direcionados a diferentes públicos, desde estudantes do ensino fundamental até pesquisadores universitários. As trilhas interpretativas permitem observar a diversidade de espécies vegetais e animais, enquanto os programas educativos explicam os processos ecológicos e a importância da conservação.</p>
+
+                <div class="highlight-box">
+                    <h3>Planeje sua Visita</h3>
+                    <p>As visitas à FLONA de Chapecó devem ser agendadas previamente junto à administração da unidade. É importante seguir as normas de visitação para garantir a preservação dos ecossistemas e a segurança dos visitantes. Recomenda-se o uso de roupas adequadas, calçados fechados e respeito às trilhas demarcadas.</p>
+                </div>
+
+                <h3>Importância Educativa</h3>
+                <p>A visitação à FLONA contribui para formar cidadãos mais conscientes sobre questões ambientais. O contato direto com a natureza preservada desperta o interesse pela conservação e demonstra na prática a importância da biodiversidade para o equilíbrio dos ecossistemas e para a qualidade de vida humana.</p>
+
+                <p>Os programas educativos da FLONA também incluem capacitação de professores, produção de materiais didáticos e desenvolvimento de projetos ambientais com escolas da região, multiplicando o impacto das ações educativas.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer id="contato">
+        <div class="container">
+            <h3>Contato e Informações</h3>
+            <p>Floresta Nacional de Chapecó - ICMBio</p>
+            <div class="contact-info">
+                <p>Sede: Gleba Guatambu - Município de Guatambu/SC</p>
+                <p>Gestão: Instituto Chico Mendes de Conservação da Biodiversidade</p>
+                <p>Para visitação e informações: Entre em contato com a administração da FLONA</p>
+            </div>
+            <p>&copy; 2025 - Floresta Nacional de Chapecó. Preservando a Mata Atlântica para as futuras gerações.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add dynamic stats counter animation
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalValue = parseInt(stat.textContent);
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        currentValue = finalValue;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(currentValue).toLocaleString();
+                }, 50);
+            });
+        }
+
+        // Trigger stats animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Add interactive hover effects for cards
+        document.querySelectorAll('.biodiversity-card, .tip-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.boxShadow = '0 12px 35px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 6px 25px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // Add parallax effect to header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('header');
+            if (header) {
+                header.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect after page load
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero-content h1');
+            if (heroTitle) {
+                const originalText = heroTitle.textContent;
+                typeWriter(heroTitle, originalText, 80);
+            }
+        });
+
+        // Add loading animation for images (if any are added later)
+        function addImageLoadingEffect() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease';
+                
+                img.onload = function() {
+                    this.style.opacity = '1';
+                };
+            });
+        }
+
+        // Call image loading effect
+        addImageLoadingEffect();
+    </script>
